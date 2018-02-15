@@ -1,0 +1,15 @@
+h2 {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+.navigation {
+  background-color: lightsteelblue;
+
+  & > * {
+    padding: 10px;
+    border: 1px solid lightgrey;
+  }
+}
+
+

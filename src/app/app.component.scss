@@ -1,8 +1,5 @@
-.navigation {
-  background-color: lightsteelblue;
+@import './app-styles';
 
-  & > * {
-    padding: 10px;
-    border: 1px solid lightgrey;
-  }
+.app-container {
+  margin: 10px;
 }
