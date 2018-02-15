@@ -1,0 +1,8 @@
+.navigation {
+  background-color: lightsteelblue;
+
+  & > * {
+    padding: 10px;
+    border: 1px solid lightgrey;
+  }
+}
