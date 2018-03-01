@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Forms - Form Builder</title>
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/zuehlke.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../lib/css/atom-one-dark.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../css/print/pdf.css' : '../css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="deck-slide">
+            <h1>Angular Forms - Form Builder</h1>
+        </section>
+
+        <section>
+            <h3>FormBuilder</h3>
+            By injecting <b>FormBuilder</b> in the constructor of our TS-file we can create our root/form <b>FormGroup</b> as
+            easy as
+            <pre><code class="hljs typescript" data-trim data-noescape>constructor(fb: FormBuilder){
+   this.form = fb.group([
+      firstName: fb.control(),
+      mobile: fb.control('079 123 45 67')
+]);
+}</code></pre>
+            instead of
+            <pre><code class="hljs typescript" data-trim data-noescape>constructor() {
+   let controls = {};
+   controls['firstName'] = new FormControl();
+   controls['mobile'] = new FormControl('079 123 45 67');
+   this.form = new FormGroup(controls);
+}</code></pre>
+        </section>
+        <section>
+            <h3>FormBuilder - FormControl</h3>
+            <pre><code class="hljs typescript" data-trim data-noescape>/**
+ * Construct a new {@link FormControl} with the given
+ * `formState`,`validator`, and `asyncValidator`.
+ *
+ * `formState` can either be a standalone value for the
+ * form control or an object that contains both
+ * a value and a disabled status.
+ */
+ control(formState: any,
+    validator?: ValidatorFn | ValidatorFn[] | null,
+    asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[]
+       | null
+ ): FormControl;</code></pre>
+        </section>
+        <section>
+            <h3>FormBuilder - FormGroup</h3>
+            <pre><code class="hljs typescript" data-trim data-noescape>/**
+ * Construct a new {@link FormGroup} with the given map
+ * of configuration.
+ * Valid keys for the `extra` parameter map are
+ * `validator` and `asyncValidator`.
+ *
+ * See the {@link FormGroup} constructor for more details.
+ */
+ group(controlsConfig: {
+       [key: string]: any;
+    }, extra?: {
+       [key: string]: any;
+    } | null
+ ): FormGroup;</code></pre>
+        </section>
+        <section>
+            <h3>FormBuilder - FormArray</h3>
+            <pre><code class="hljs typescript" data-trim data-noescape>/**
+ * Construct a {@link FormArray} from the given
+ * `controlsConfig` array of configuration, with the
+ * given optional `validator` and `asyncValidator`.
+ */
+ array(controlsConfig: any[],
+    validator?: ValidatorFn | null,
+    asyncValidator?: AsyncValidatorFn | null
+ ): FormArray;</code></pre>
+        </section>
+
+        <section>
+            <h3>Example</h3>
+               <pre><code class="hljs typescript" data-trim data-noescape>constructor(fb: FormBuilder){
+   this.form = fb.group([
+      firstName: fb.control()
+   ]);
+}</code></pre>
+
+            <pre><code class="hljs html" data-trim data-noescape>&lt;form [formGroup]=&quot;form&quot; (ngSubmit)=&quot;onSubmit(form.value)&quot;&gt;
+      &lt;label for=&quot;firstName&quot;&gt;First name&lt;/label&gt;
+      &lt;input id=&quot;firstName&quot; formControlName=&quot;firstName&quot;&gt;
+&lt;/form&gt;</code></pre>
+
+            <ul>
+                <li><b>form</b> is the <b>FormGroup</b> we created using the <b>FormBuilder</b> in our TS-file</li>
+                <li><b>formControlName="firstName"</b> represents the key of the <b>FormControl</b> <b>firstName</b> in
+                    our TS-file (<b>form.firstName: FormControl)</b></li>
+            </ul>
+        </section>
+    </div>
+</div>
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

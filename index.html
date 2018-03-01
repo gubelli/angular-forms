@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/theme/zuehlke-index.css">
+
+    <title>JWT & Auth0</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Angular Forms</h1>
+        <h2>Martin Leimer</h2>
+    </header>
+
+    <section>
+        <a href="slides/the-basics.html">
+            <h2>The Basics</h2>
+            <ul>
+                <li>Form Elements (FormGroup, FormArray, FormControl)</li>
+            </ul>
+        </a>
+    </section>
+
+    <section>
+        <a href="slides/form-types.html">
+            <h2>Form types</h2>
+            <ul>
+                <li>Template-driven Forms</li>
+                <li>Reactive Forms</li>
+            </ul>
+        </a>
+    </section>
+
+    <section>
+        <a href="slides/form-builder.html">
+            <h2>Form builder</h2>
+            <ul>
+                <li>Form Elements (FormGroup, FormArray, FormControl)</li>
+            </ul>
+        </a>
+    </section>
+
+    <section>
+        <a href="slides/validators.html">
+            <h2>Validators</h2>
+            <ul>
+                <li>Standard validators</li>
+                <li>Custom validators</li>
+            </ul>
+        </a>
+    </section>
+
+    <section>
+        <a href="slides/advanced-topics.html">
+            <h2>Advanced Topics</h2>
+            <ul>
+                <li>Watching on changes</li>
+                <li>Dynamically adding or removing fields</li>
+            </ul>
+        </a>
+    </section>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

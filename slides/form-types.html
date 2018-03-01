@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Forms - Form Types</title>
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/zuehlke.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../lib/css/atom-one-dark.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../css/print/pdf.css' : '../css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="deck-slide">
+            <h1>Angular Forms - Form Types</h1>
+        </section>
+
+        <section>
+            <section>
+                <h2>Template-driven Forms</h2>
+            </section>
+            <section>
+                <h3>Template-driven forms</h3>
+                <ul>
+                    <li>Simple, basic forms</li>
+                    <li>Simple validations like:
+                        <ul>
+                            <li>Required</li>
+                            <li>Min-length</li>
+                            <li>Max-length</li>
+                            <li>Pattern</li>
+                        </ul>
+                    </li>
+                    <li>Code is written mainly in the HTML-file</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Declarations & Imports</h3>
+                <pre><code class="hljs" data-trim data-noescape>//... imports
+@NgModule({
+  declarations: [
+    AppComponent,
+    YourFormComponent // <-- Your form component
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule // <-- For template-driven forms
+  ],
+  providers: [],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }</code></pre>
+                <div>Directives:</div>
+                <ul>
+                    <li>ngModel</li>
+                    <li>NgForm</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Injection</h3>
+                <ul>
+                    <li>Importing <b>FormsModule</b> makes <b>NgForm</b> available to our view</li>
+                    <li><b>NgForm</b> will automatically be applied to the <b>form</b>-tag by definition:
+                        <pre><code class="hljs" data-trim data-noescape>form:not([ngNoForm]):not([formGroup]),ngForm,[ngForm]</code></pre>
+                    </li>
+                    <li><b>NgForm</b> will automatically provide an <b>(ngSubmit)</b> output function</li>
+                </ul>
+
+            </section>
+
+            <section>
+                <h3>Meaning</h3>
+                <pre><code class="hljs html" data-trim data-noescape>&lt;form #f=&quot;ngForm&quot; (ngSubmit)=&quot;onSubmit(f.value)&quot;&gt;
+      &lt;label for=&quot;name&quot;&gt;First name&lt;/label&gt;
+      &lt;input id=&quot;name&quot; name=&quot;name&quot; ngModel&gt;
+&lt;/form&gt;</code></pre>
+
+                <ul>
+                    <li><b>ngForm</b> is the <b>FormGroup</b> of <b>NgForm</b>
+                        <ul>
+                            <li>It is assigned to the local variable <b>f</b></li>
+                        </ul>
+                    </li>
+                    <li>The attribute <b>ngModel</b> creates a new <b>FormControl</b>
+                        <ul>
+                            <li>Requires attribute <b>name</b> on element to create it</li>
+                            <li>is automatically added to its parent <b>FormGroup</b></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Meaning</h3>
+                <pre><code class="hljs html" data-trim data-noescape>&lt;form #f=&quot;ngForm&quot; (ngSubmit)=&quot;onSubmit(f.value)&quot;&gt;
+      &lt;label for=&quot;name&quot;&gt;First name&lt;/label&gt;
+      &lt;input id=&quot;name&quot; name=&quot;name&quot; ngModel&gt;
+&lt;/form&gt;</code></pre>
+                <ul>
+                    <li><b>ngModel</b> can be created as a
+                        <ul>
+                            <li>one-way data binding: <b>ngModel</b> (without value)</li>
+                            <li>two-way data binding: <b>[(ngModel)]="model.name"</b></li>
+                        </ul>
+                    </li>
+                    <li><b>ngModelGroup</b> would let us make sub groups</li>
+                    <li><b>ngModelArray</b> is in development</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Reactive Forms</h2>
+            </section>
+            <section>
+                <h3>Reactive forms</h3>
+                <ul>
+                    <li>Complex forms</li>
+                    <li>Complex validations like:
+                        <ul>
+                            <li>Validations going beyond RegExp</li>
+                            <li>Validations being dependent on other fields</li>
+                        </ul>
+                    </li>
+                    <li>Dynamic visible fields, e.g. checkbox has to be shown if some specific select option has been
+                        selected
+                    </li>
+                    <li>Better integrable with multi language / i18n support</li>
+                    <li>The magic happens in the TS-File -> Easier to test</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Declarations & Imports</h3>
+                <pre><code class="hljs" data-trim data-noescape>//... imports
+@NgModule({
+  declarations: [
+    AppComponent,
+    YourFormComponent // <-- Your form component
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule // <-- For reactive forms
+  ],
+  providers: [],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }</code></pre>
+                <div>Directives:</div>
+                <ul>
+                    <li>formControl</li>
+                    <li>ngFormGroup</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Injection</h3>
+                <ul>
+                    <li>Importing <b>ReactiveFormsModule</b> provides us a <b>FormBuilder</b></li>
+                    <li><b>NgForm</b> will NOT be added, as it doesn't match the selector. However, you can still use
+                        <b>(ngSubmit)</b> and <b>[(ngModel)]</b></li>
+                    <li>Add the attribute <b>[formGroup]</b> to the <b>form</b>-tag to use it as a reactive form</li>
+                    <li>Add the attribute <b>formControlName</b> (or <b>formControl</b>) to each input field to bind it
+                        with your <b>FormControl</b></li>
+                    <li>use <b>formGroupName</b> on non-input elements to cope with nested <b>FormGroup</b>s</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Implications</h3>
+                <ul>
+                    <li>We have to create all our <b>FormControl</b>s, <b>FormGroup</b>s and possible <b>FormArray</b>s
+                        in the TS-file
+                    </li>
+                    <li>We can use <b>FormBuilder</b> to create those more easily</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Meaning</h3>
+                <pre><code class="hljs html" data-trim data-noescape>&lt;form [formGroup]=&quot;form&quot; (ngSubmit)=&quot;onSubmit(form.value)&quot;&gt;
+      &lt;label for=&quot;firstName&quot;&gt;First name&lt;/label&gt;
+      &lt;input id=&quot;firstName&quot; formControlName=&quot;firstName&quot;&gt;
+&lt;/form&gt;</code></pre>
+                <ul>
+                    <li><b>form</b> is the <b>FormGroup</b> variable of our TS-file</li>
+                    <li><b>NgForm</b> is not used, as the selector does not match. Thus the attributes <b>name</b> and
+                        <b>ngModel</b> are no longer required.
+                    </li>
+                    <li><b>formControlName="firstName"</b> defines <b>firstName</b> as the key of the <b>FormControl</b>
+                        which we have to create in our TS-file.
+                    </li>
+                    <li>There is also a <b>formGroupName</b> and <b>formArrayName</b> for nested objects and lists.</li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

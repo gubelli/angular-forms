@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Forms - The Basics</title>
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/zuehlke.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../lib/css/atom-one-dark.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../css/print/pdf.css' : '../css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="deck-slide">
+            <h1>The Basics - Form Groups,<br> Form Controls & From Arrays</h1>
+        </section>
+
+        <section>
+            <h3>How to learn about Angular Forms</h3>
+            <div>A typical approach developers create forms is to place input elements in the DOM without thinking too
+                much about the output object, as it can be transformed anyhow. However, for a basic understanding of
+                Angular Forms, we should take a step back and start with the output that represents all the data the
+                user has typed into the form.</div>
+        </section>
+        <section>
+            <h3>Relating the form output to the form elements</h3>
+            <div>Consider your form output will generate a JSON-object:</div>
+            <pre><code class="hljs json" data-trim contenteditable data-noescape>{
+   "customerNumber":"C1004234",
+   "phoneNumbers":[
+      "0041791112233",
+      "0041442223344"
+   ],
+   "address":{
+      "street":"Angularstreet",
+      "streetNumber":"104",
+      "postalCode":"8000",
+      "city":"Zürich"
+   }
+}</code></pre>
+        </section>
+        <section>
+            <h3>Relating the form output to the form elements</h3>
+            <ul>
+                <li>If the field represents an object, use <b>FormGroup</b></li>
+                <li>If the field represents a list, use <b>FormArray</b></li>
+                <li>If the field represents a single value or is a value of a <b>FormArray</b>, use <b>FormControl</b>
+                </li>
+                <li>The root itself is always a <b>FormGroup</b> and has to be assigned to the <b>form</b>-tag</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Relating the form output to the form elements</h3>
+            Therefore, our JSON transforms to:
+            <pre><code class="hljs json" data-trim contenteditable data-noescape>{ // <-- FormGroup (always goes on the form-tag)
+   "customerNumber":"C1004234", // <-- FormControl
+   "phoneNumbers":[ // <-- FormArray
+      "0041791112233", // <-- FormControl
+      "0041442223344" // <-- FormControl
+   ],
+   "address":{ // <-- FormGroup
+      "street":"Angularstreet", // <-- FormControl
+      "streetNumber":"104", // <-- FormControl
+      "postalCode":"8000", // <-- FormControl
+      "city":"Zürich" // <-- FormControl
+   }
+}</code></pre>
+        </section>
+        <section>
+            <h3>AbstractControl</h3>
+            <div>In Angular, each input field or group of fields, including the form itself is represented by a subtype of <b>AbstractControl</b>. An <b>AbstractControl</b> provides:</div>
+            <ul>
+                <li>State
+                    <ul>
+                        <li>valid / invalid</li>
+                        <li>dirty / pristine</li>
+                        <li>touched</li>
+                        <li>errors</li>
+                    </ul>
+                </li>
+                <li>Value</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Subtypes of AbstractControl</h3>
+            <ul>
+                <li><b>FormControl</b></li>
+                <li><b>FormGroup</b></li>
+                <li><b>FormArray</b></li>
+            </ul>
+        </section>
+        <section>
+            <h3>FormControl</h3>
+            <ul>
+                <li>A <b>FormControl</b> represents a single input field</li>
+            </ul>
+        </section>
+        <section>
+            <h3>FormGroup</h3>
+            <ul>
+                <li><b>FormGroup</b>s manage multiple <b>FormControl</b>s</li>
+                <li>Used for clustering values together, which belong together, e.g. an address</li>
+                <li>The form itself is always represented by a <b>FormGroup</b></li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>FormArray</h3>
+            <ul>
+                <li><b>FormArray</b>s manage multiple <b>FormControl</b>s</li>
+                <li>Used for a series of input fields of same kind, e.g.
+                    <ul>
+                        <li>phone number input fields</li>
+                        <li>ordering of calling sequence</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+</div>
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

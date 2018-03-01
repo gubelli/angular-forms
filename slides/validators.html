@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Forms - Validators</title>
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/zuehlke.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../lib/css/atom-one-dark.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../css/print/pdf.css' : '../css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="deck-slide">
+            <h1>Angular Forms - Validators</h1>
+        </section>
+
+        <section>
+            <h3>Angular validators</h3>
+            <ul>
+                <li>required</li>
+                <li>requiredTrue</li>
+                <li>email</li>
+                <li>min</li>
+                <li>max</li>
+                <li>minLength</li>
+                <li>maxLength</li>
+                <li>pattern</li>
+                <li>nullValidator</li>
+            </ul>
+        </section>
+        <section>
+            <h3>How to use</h3>
+            Simply add your validations while constructing the <b>FormControl</b>
+            <pre><code class="hljs typescript" data-trim data-noescape>this.fb.control('',
+   [Validators.required, Validators.maxLength(5)])</code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>this.fb.control('',
+   Validators.required)</code></pre>
+        </section>
+        <section>
+            <h3>Custom validations</h3>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+function customerNumberValidator(control: FormControl)
+   : { [s: string]: boolean } {
+   if (!control.value.match(/^P1000/)) {
+      return {invalidCustomerNumber: true};
+   }
+}</code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>this.fb.control('', customerNumberValidator)</code></pre>
+        </section>
+        <section>
+            <h3>Custom validations over multiple fields</h3>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+function distinctValueValidator(formArray: FormArray)
+   : { [s: string]: boolean } {
+   const values = formArray.controls
+      .map(control => control.value);
+   const uniqueValues = new Set(values);
+   if (values.length !== uniqueValues.size) {
+      return {notDistinctValues: true};
+   }
+}</code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>this.fb.array([...], distinctValueValidator)</code></pre>
+        </section>
+    </div>
+</div>
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

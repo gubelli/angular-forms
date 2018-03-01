@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Angular Forms - Advanced topics</title>
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/zuehlke.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../lib/css/atom-one-dark.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../css/print/pdf.css' : '../css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="deck-slide">
+            <h1>Angular Forms - <br> Advanced topics</h1>
+        </section>
+
+        <section>
+            <section>
+                <h2>Watching for changes</h2>
+            </section>
+            <section>
+                <h3>Listen to AbstractControls</h3>
+                <p>All <b>AbstractControl</b>s allow you to listen<br>to value changes through their <b>valueChanges</b>
+                    attribute
+                </p>
+                <pre><code class="hljs typescript" data-trim data-noescape>this.aFormControl.valueChanges.subscribe(
+   (value: string) => {
+      console.log('form control value changed to:', value);
+      /* Fritz Mustermann */
+   });
+this.form.valueChanges.subscribe(
+   (formValues: any) => {
+      console.log('form changed to:', formValues);
+      /* {
+             "address": "Formstrasse",
+             "streetNumber": "10A"
+         }*/
+   });</code></pre>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Dynamically add or remove fields</h2>
+            </section>
+            <section>
+                <h3>Purpose</h3>
+                <p>Examples:</p>
+                <ul>
+                    <li>Showing a checkbox only if some option had been selected by the user</li>
+                    <li>Adding a new input field within a list, e.g. phone numbers</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Why does it have to be dynamic?</h3>
+                <p><b>FormArray</b> and <b>FormGroup</b> allow to dynamically add and remove fields after the form had been created. This is important due to the following reasons:</p>
+                <ul>
+                    <li>You do not want to modify/overwrite the state of other <b>FormControl</b>s while doing this operation</li>
+                    <li>Hiding an input field will not protect it from being validated, e.g. if there is a required hidden field, the user cannot submit the form</li>
+                </ul>
+            </section>
+            <section>
+                <h3>How to add a FormControl to a FormGroup</h3>
+                <pre><code class="hljs typescript" data-trim data-noescape>/**
+* Registers a control with the group's list of controls.
+*
+* This method does not update the value or validity of
+* the control, so for most cases you'll want to use
+* {@link FormGroup#addControl addControl} instead.
+*/
+registerControl(name: string, control: AbstractControl)
+   : AbstractControl;
+/**
+* Add a control to this group.
+*/
+addControl(name: string, control: AbstractControl): void;</code></pre>
+            </section>
+            <section>
+                <h3>How to do remove a FormControl from a FormGroup</h3>
+                <pre><code class="hljs typescript" data-trim data-noescape>/**
+* Remove a control from this group.
+*/
+removeControl(name: string): void;</code></pre>
+            </section>
+            <section>
+                <h3>How to do replace a FormControl on a FormGroup</h3>
+                <pre><code class="hljs typescript" data-trim data-noescape>/**
+* Replace an existing control.
+*/
+setControl(name: string, control: AbstractControl): void;</code></pre>
+            </section>
+            <section>
+                <h3>How to add a FormControl to a FormArray</h3>
+                <pre><code class="hljs typescript" data-trim data-noescape>/**
+* Insert a new {@link AbstractControl} at the end
+* of the array.
+*/
+push(control: AbstractControl): void;
+/**
+* Insert a new {@link AbstractControl} at the given
+* `index` in the array.
+*/
+insert(index: number, control: AbstractControl): void;
+                </code></pre>
+            </section>
+            <section>
+                <h3>How to remove a FormControl from a FormArray</h3>
+                <pre><code class="hljs typescript" data-trim data-noescape>/**
+* Remove the control at the given `index`
+* in the array.
+*/
+removeAt(index: number): void;</code></pre>
+            </section>
+            <section>
+                <h3>How to replace a FormControl on a FormArray</h3>
+                <pre><code class="hljs typescript" data-trim data-noescape>/**
+* Replace an existing control.
+*/
+setControl(index: number, control: AbstractControl): void;
+                </code></pre>
+            </section>
+            <section>
+                <h3>Examples</h3>
+                <pre><code class="hljs typescript" data-trim data-noescape>this.subjectFormGroup.registerControl(
+   'customerSubject',
+   this.fb.control('', Validators.required));</code></pre>
+                <pre><code class="hljs typescript" data-trim data-noescape>this.subjectFormGroup.removeControl('customerSubject');</code></pre>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="../lib/js/head.min.js"></script>
+<script src="../js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
