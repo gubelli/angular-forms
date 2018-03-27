@@ -1,0 +1,40 @@
+<h3>Exercise 2</h3>
+
+<h4>What will you learn?</h4>
+<ul>
+  <li>Highlighting and showing form validations</li>
+</ul>
+
+<h4>How to?</h4>
+<ol>
+  <li>Set the class 'is-valid' or 'is-invalid' respectively for each FormControl whenever it is valid/invalid</li>
+  <li>Create a separate DOM-element after each input field to show any errors of that input field
+    <ul>
+      <li>Assign the class-name 'invalid-feedback' to it</li>
+      <li>Show the error of the input sibling as a JSON-object</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- START HERE -->
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
+
+<!-- STOP HERE -->
+
+<div *ngIf="formData" class="alert alert-success form-output" role="alert">
+  <div>The form input is valid</div>
+  <div>{{formData | json}}</div>
+</div>

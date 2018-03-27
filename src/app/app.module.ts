@@ -3,22 +3,24 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {ComplexFormComponent} from './complex-form/complex-form.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {Exercise2Component} from './exercise-2/exercise-2.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ComplexFormComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    Exercise2Component,
+    PageNotFoundComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
