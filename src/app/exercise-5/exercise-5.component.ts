@@ -31,6 +31,7 @@ export class Exercise5Component {
 
   resetForm() {
     this.form.reset();
+    this.formData = undefined;
   }
 
 }
