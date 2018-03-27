@@ -1,0 +1,24 @@
+<h3>Exercise 2 - Solution</h3>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName"
+             [ngClass]="form.get('firstName').valid ? 'is-valid' : 'is-invalid'">
+      <div *ngIf="form.get('firstName').invalid" class="invalid-feedback">{{form.get('firstName').errors | json}}</div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName"
+             [ngClass]="form.get('lastName').valid ? 'is-valid' : 'is-invalid'">
+      <div *ngIf="form.get('lastName').invalid" class="invalid-feedback">{{form.get('lastName').errors | json}}</div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
+
+<div *ngIf="formData" class="alert alert-success form-output" role="alert">
+  <div>The form input is valid</div>
+  <div>{{formData | json}}</div>
+</div>
