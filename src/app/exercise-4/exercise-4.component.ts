@@ -29,6 +29,7 @@ export class Exercise4Component {
 
   resetForm() {
     this.form.reset();
+    this.formData = undefined;
   }
 
 }
