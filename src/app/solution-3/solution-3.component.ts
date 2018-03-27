@@ -20,9 +20,11 @@ export class Solution3Component {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      this.formData = this.form.value;
+    if (this.form.invalid) {
+      this.fh.markAllControlsAsTouched(this.form);
+      return;
     }
+    this.formData = this.form.value;
   }
 
 }
