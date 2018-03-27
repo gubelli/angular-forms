@@ -1,0 +1,39 @@
+<h3>Exercise 4 - Solution</h3>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName"
+             [ngClass]="fh.getValidInvalidClassName(form.get('firstName'))">
+      <div *ngIf="fh.hasErrors(form.get('firstName'))" class="invalid-feedback">
+        {{fh.getErrorMessage(form.get('firstName'))}}
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName"
+             [ngClass]="fh.getValidInvalidClassName(form.get('lastName'))">
+      <div *ngIf="fh.hasErrors(form.get('lastName'))" class="invalid-feedback">
+        {{fh.getErrorMessage(form.get('lastName'))}}
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-8 mb-3">
+      <label for="customerNumber">Customer number</label>
+      <input type="text" class="form-control" id="customerNumber" formControlName="customerNumber"
+             [ngClass]="fh.getValidInvalidClassName(form.get('customerNumber'))">
+      <div *ngIf="fh.hasErrors(form.get('customerNumber'))" class="invalid-feedback">
+        {{fh.getErrorMessage(form.get('customerNumber'))}}
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+  <button class="btn btn-secondary" type="button" (click)="resetForm()">Reset form</button>
+</form>
+
+<div *ngIf="formData" class="alert alert-success form-output" role="alert">
+  <div>The form input is valid</div>
+  <div>{{formData | json}}</div>
+</div>
