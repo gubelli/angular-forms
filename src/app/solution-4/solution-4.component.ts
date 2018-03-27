@@ -31,5 +31,6 @@ export class Solution4Component {
 
   resetForm() {
     this.form.reset();
+    this.formData = undefined;
   }
 }
