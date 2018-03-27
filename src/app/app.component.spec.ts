@@ -1,18 +1,18 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {ComplexFormComponent} from './complex-form/complex-form.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {APP_BASE_HREF} from '@angular/common';
+import {Exercise1Component} from "./exercise-1/exercise-1.component";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ComplexFormComponent,
         DashboardComponent,
+        Exercise1Component,
         PageNotFoundComponent
       ],
       imports: [
