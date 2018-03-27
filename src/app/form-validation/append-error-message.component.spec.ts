@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ComplexFormComponent} from './complex-form.component';
+import {AppendErrorMessageComponent} from './append-error-message.component';
 
-describe('ComplexFormComponent', () => {
-  let component: ComplexFormComponent;
-  let fixture: ComponentFixture<ComplexFormComponent>;
+describe('AppendErrorMessageComponent', () => {
+  let component: AppendErrorMessageComponent;
+  let fixture: ComponentFixture<AppendErrorMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ComplexFormComponent]
+      declarations: [AppendErrorMessageComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComplexFormComponent);
+    fixture = TestBed.createComponent(AppendErrorMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

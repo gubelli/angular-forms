@@ -1,0 +1,4 @@
+<ng-content></ng-content>
+<div *ngIf="formControlName?.errors && formControlName?.touched" class="d-flex invalid-feedback">
+  {{ getFirstErrorMessage() }}
+</div>

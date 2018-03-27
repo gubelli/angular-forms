@@ -3,24 +3,34 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {ComplexFormComponent} from './complex-form/complex-form.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {ExampleFormComponent} from './example-form/example-form.component';
+import {FormHelperService} from "./form-validation/form-helper.service";
+import {MarkAsInvalidDirective} from "./form-validation/mark-as-invalid-directive";
+import {AppendErrorMessageComponent} from './form-validation/append-error-message.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ComplexFormComponent,
+    AppendErrorMessageComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    ExampleFormComponent,
+    MarkAsInvalidDirective,
+    PageNotFoundComponent,
+    AppendErrorMessageComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    FormHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
