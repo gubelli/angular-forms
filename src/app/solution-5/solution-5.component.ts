@@ -41,6 +41,7 @@ export class Solution5Component {
 
   resetForm() {
     this.form.reset();
+    this.formData = undefined;
   }
 
   getPhoneNumbersFormArray(): FormArray {
