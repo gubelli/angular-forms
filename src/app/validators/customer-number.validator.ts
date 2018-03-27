@@ -4,5 +4,4 @@ export function customerNumberValidator(control: FormControl): { [s: string]: bo
   if (!control.value || !control.value.match(/^C100/) || control.value.length !== 10) {
     return {invalidCustomerNumber: true};
   }
-  //return;
 }

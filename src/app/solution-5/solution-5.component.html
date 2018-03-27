@@ -33,13 +33,14 @@
   <div formArrayName="phoneNumbers" class="form-row">
     <div class="col-md-8 mb-3">
       <label for="phones">Phone numbers</label>
-      <div id="phones" class="form-control"
-           [ngClass]="fh.getValidInvalidClassName(form.get('phoneNumbers'))">
-        <div *ngFor="let control of getPhoneNumbersFormArray().controls;index as i;last as last" class="d-flex">
-          <input title="phones" class="form-control" [formControlName]="i"
-                 [ngClass]="fh.getValidInvalidClassName(control)">
-          <button *ngIf="!last" (click)="removePhoneAt(i)" class="btn btn-secondary plus-minus-button">-</button>
-          <button *ngIf="last" (click)="addPhone()" class="btn btn-secondary plus-minus-button">+</button>
+      <div id="phones" class="form-control" [ngClass]="fh.getValidInvalidClassName(form.get('phoneNumbers'))">
+        <div *ngFor="let control of getPhoneNumbersFormArray().controls;index as i;last as last">
+          <div class="d-flex">
+            <input title="phones" class="form-control" [formControlName]="i"
+                   [ngClass]="fh.getValidInvalidClassName(control)">
+            <button *ngIf="!last" (click)="removePhoneAt(i)" class="btn btn-secondary plus-minus-button">-</button>
+            <button *ngIf="last" (click)="addPhone()" class="btn btn-secondary plus-minus-button">+</button>
+          </div>
           <div *ngIf="fh.hasErrors(control)">{{fh.getErrorMessage(control)}}</div>
         </div>
       </div>

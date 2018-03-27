@@ -25,5 +25,47 @@ describe('Solution5Component', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.form).toBeTruthy();
   });
+
+  it('should be possible to add a new phone number', () => {
+    const prevLength = component.form.value.phoneNumbers.length;
+
+    component.addPhone();
+    expect(component.form).toBeTruthy();
+    expect(component.form.value.phoneNumbers.length).toBe(prevLength + 1);
+  });
+
+  it('should be possible to remove a new phone number', () => {
+    const prevLength = component.form.value.phoneNumbers.length;
+
+    component.removePhoneAt(0);
+    expect(component.form).toBeTruthy();
+    expect(component.form.value.phoneNumbers.length).toBe(prevLength - 1);
+  });
+
+  it('should not save when no input is entered', () => {
+    expect(component.formData).toBeUndefined();
+    component.onSubmit();
+    fixture.detectChanges();
+    expect(component.form.invalid).toBe(true);
+    expect(component.formData).toBeUndefined();
+  });
+
+  it('should save when each input is valid', () => {
+    const expectedFormData = {
+      firstName: 'Max',
+      lastName: 'Mustermann',
+      customerNumber: 'C100ABCDEF',
+      phoneNumbers: ['+41791231057']
+    };
+    expect(component.formData).toBeUndefined();
+
+    component.form.patchValue(expectedFormData);
+    component.onSubmit();
+
+    expect(component.form.valid).toBe(true);
+    expect(component.formData).toEqual(expectedFormData);
+  });
+
 });
