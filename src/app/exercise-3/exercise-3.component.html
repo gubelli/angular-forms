@@ -1,0 +1,53 @@
+<h3>Exercise 3</h3>
+
+<h4>What will you learn?</h4>
+<ul>
+  <li>How to prevent error messages being shown to the user while the input is not touched</li>
+  <li>How to enforce showing error messages when the form is being submitted but invalid</li>
+</ul>
+
+<h4>How to?</h4>
+<ol>
+  <li>Create a FormHelperService
+    <ul>
+      <li>Create a method which accepts an AbstractControl and returns 'is-valid' or 'is-invalid' depending on the
+        validity of that AbstractControl and use this method within all [ngClass] occurences
+      </li>
+      <li>Create a method which accepts an AbstractControl and returns a boolean depending on the validity of that
+        AbstractControl and use this method within all *ngIf occurences whose elements have the class 'invalid-feedback'
+      </li>
+      <li>Create a method which accepts an AbstractControl and returns an error message for any errors it may have</li>
+    </ul>
+  </li>
+  <li>Modify the methods body such that they return invalidity results only if their AbstractControl was touched</li>
+  <li>Mark all fields as touched on submission</li>
+</ol>
+
+<!-- START HERE -->
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName"
+             [ngClass]="form.get('firstName').valid ? 'is-valid' : 'is-invalid'">
+      <div *ngIf="form.get('firstName').invalid" class="invalid-feedback">{{form.get('firstName').errors | json}}</div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName"
+             [ngClass]="form.get('lastName').valid ? 'is-valid' : 'is-invalid'">
+      <div *ngIf="form.get('lastName').invalid" class="invalid-feedback">{{form.get('lastName').errors | json}}</div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
+
+<!-- STOP HERE -->
+
+<div *ngIf="formData" class="alert alert-success form-output" role="alert">
+  <div>The form input is valid</div>
+  <div>{{formData | json}}</div>
+</div>
+
+
