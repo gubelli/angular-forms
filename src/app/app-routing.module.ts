@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {ComplexFormComponent} from './complex-form/complex-form.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {Solution5Component} from "./solution-5/solution-5.component";
 
 const routes: Routes = [
-  {path: 'complex-form', component: ComplexFormComponent},
+  {path: 'solution-5', component: Solution5Component},
   {path: '', component: DashboardComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
