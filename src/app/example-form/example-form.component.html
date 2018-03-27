@@ -11,22 +11,17 @@
       <input type="text" class="form-control" id="lastName" formControlName="lastName">
     </div>
   </div>
-  <div class="form-row">
-    <div class="col-md-8 mb-3" app-append-error-message>
-      <label for="customerNumber">Customer number</label>
-      <input type="text" class="form-control" id="customerNumber" formControlName="customerNumber">
-    </div>
-  </div>
-
   <div formArrayName="phoneNumbers" class="form-row">
     <div class="col-md-8 mb-3">
       <label for="phones">Phone numbers</label>
-      <div id="phones" class="form-control">
-        <div *ngFor="let control of getPhoneNumbersFormArray().controls;index as i;last as last" class="d-flex"
+      <div id="phones">
+        <div *ngFor="let control of getPhoneNumbersFormArray().controls;index as i;last as last"
              app-append-error-message>
-          <input title="phones" class="form-control" [formControlName]="i">
-          <button *ngIf="!last" (click)="removePhoneAt(i)" class="btn btn-secondary plus-minus-button">-</button>
-          <button *ngIf="last" (click)="addPhone()" class="btn btn-secondary plus-minus-button">+</button>
+          <div class="d-flex">
+            <input title="phones" class="form-control" [formControlName]="i">
+            <button *ngIf="!last" (click)="removePhoneAt(i)" class="btn btn-secondary plus-minus-button">-</button>
+            <button *ngIf="last" (click)="addPhone()" class="btn btn-secondary plus-minus-button">+</button>
+          </div>
         </div>
       </div>
     </div>

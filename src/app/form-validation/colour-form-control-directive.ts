@@ -2,7 +2,7 @@ import {ContentChild, Directive, HostBinding} from "@angular/core";
 import {FormControlName} from "@angular/forms";
 
 @Directive({selector: '[formControlName]'})
-export class MarkAsInvalidDirective {
+export class ColourFormControlDirective {
 
   @ContentChild(FormControlName)
   formControlName: FormControlName;

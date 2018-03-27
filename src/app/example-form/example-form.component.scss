@@ -1,5 +1,12 @@
 @import '../app-styles';
 
+#phones > div {
+  margin-top: 10px;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
 .plus-minus-button {
   width: 36px;
 }

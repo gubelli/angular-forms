@@ -8,7 +8,6 @@ export class FormHelperService {
   }
 
   markAllControlsAsTouched(control: AbstractControl) {
-    console.log('C');
     if (control instanceof FormControl) {
       control.markAsTouched();
       return;

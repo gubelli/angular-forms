@@ -9,7 +9,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ExampleFormComponent} from './example-form/example-form.component';
 import {FormHelperService} from "./form-validation/form-helper.service";
-import {MarkAsInvalidDirective} from "./form-validation/mark-as-invalid-directive";
+import {ColourFormControlDirective} from "./form-validation/colour-form-control-directive";
 import {AppendErrorMessageComponent} from './form-validation/append-error-message.component';
 
 
@@ -17,9 +17,9 @@ import {AppendErrorMessageComponent} from './form-validation/append-error-messag
   declarations: [
     AppComponent,
     AppendErrorMessageComponent,
+    ColourFormControlDirective,
     DashboardComponent,
     ExampleFormComponent,
-    MarkAsInvalidDirective,
     PageNotFoundComponent,
     AppendErrorMessageComponent
   ],

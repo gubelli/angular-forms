@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {customerNumberValidator} from "../validators/customer-number.validator";
+import {e164PhoneNumberValidator} from "../validators/e164-phone-number.validator";
 import {FormHelperService} from "../form-validation/form-helper.service";
 
 @Component({
@@ -17,7 +17,6 @@ export class ExampleFormComponent {
     this.form = fb.group({
       firstName: fb.control('', Validators.required),
       lastName: fb.control('', Validators.required),
-      customerNumber: fb.control('', [Validators.required, customerNumberValidator]),
       phoneNumbers: fb.array([this.createPhoneNumberFormControl()])
     });
   }
@@ -47,7 +46,7 @@ export class ExampleFormComponent {
   }
 
   private createPhoneNumberFormControl(): FormControl {
-    return this.fb.control('', [Validators.maxLength(15)]);
+    return this.fb.control('', [e164PhoneNumberValidator()]);
   }
 
 }

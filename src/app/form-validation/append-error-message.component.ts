@@ -19,8 +19,8 @@ export class AppendErrorMessageComponent {
     switch (key) {
       case 'allEntriesEmpty':
         return 'At least one entry must be non empty';
-      case 'invalidCustomerNumber':
-        return 'This is an invalid customer number';
+      case 'invalidE164PhoneNumber':
+        return 'This is an invalid phone number';
       case 'maxlength':
         return 'Your entry is too long. Max ' + this.formControlName.errors[key].requiredLength + ' chars)';
       case 'required':
