@@ -5,7 +5,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {Solution4Component} from "./solution-4/solution-4.component";
 
 const routes: Routes = [
-  {path: 'solutions-4', component: Solution4Component},
+  {path: 'solution-4', component: Solution4Component},
   {path: '', component: DashboardComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
