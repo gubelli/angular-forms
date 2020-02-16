@@ -1,23 +1,22 @@
-import {ContentChild, Directive, HostBinding} from '@angular/core';
-import {FormControlName} from '@angular/forms';
+import {Directive, HostBinding} from '@angular/core';
+import {NgControl} from '@angular/forms';
 
 @Directive({selector: '[formControlName]'})
 export class ColourFormControlDirective {
-
-  @ContentChild(FormControlName, {static: false})
-  formControlName: FormControlName;
-
-  constructor() {
+  constructor(private ngControl: NgControl) {
   }
 
   @HostBinding('class.is-invalid')
   get isInvalid() {
-    return this.formControlName.invalid && this.formControlName.touched;
+    return this.control.invalid && this.control.touched;
   }
 
   @HostBinding('class.is-valid')
   get isValid() {
-    return this.formControlName.valid && this.formControlName.touched;
+    return this.control.valid && this.control.touched;
   }
 
+  get control() {
+    return this.ngControl.control;
+  }
 }

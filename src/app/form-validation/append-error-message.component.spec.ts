@@ -1,9 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AppendErrorMessageComponent} from './append-error-message.component';
-import {Component} from "@angular/core";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {By} from "@angular/platform-browser";
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {By} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-append-error-message-test',

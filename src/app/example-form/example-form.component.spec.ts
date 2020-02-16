@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ExampleFormComponent} from './example-form.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {FormHelperService} from "../form-validation/form-helper.service";
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormHelperService} from '../form-validation/form-helper.service';
 
 describe('ExampleFormComponent', () => {
   let component: ExampleFormComponent;

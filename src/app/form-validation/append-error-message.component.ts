@@ -8,7 +8,7 @@ import {FormControlName} from '@angular/forms';
 })
 export class AppendErrorMessageComponent {
 
-  @ContentChild(FormControlName, {static: false})
+  @ContentChild(FormControlName)
   formControlName: FormControlName;
 
   constructor() {

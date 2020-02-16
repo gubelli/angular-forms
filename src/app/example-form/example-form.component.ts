@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {e164PhoneNumberValidator} from "../validators/e164-phone-number.validator";
-import {FormHelperService} from "../form-validation/form-helper.service";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {e164PhoneNumberValidator} from '../validators/e164-phone-number.validator';
+import {FormHelperService} from '../form-validation/form-helper.service';
 
 @Component({
   selector: 'app-example-form',
