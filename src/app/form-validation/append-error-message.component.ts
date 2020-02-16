@@ -1,5 +1,5 @@
 import {Component, ContentChild} from '@angular/core';
-import {FormControlName} from "@angular/forms";
+import {FormControlName} from '@angular/forms';
 
 @Component({
   selector: '[app-append-error-message]',
@@ -8,7 +8,7 @@ import {FormControlName} from "@angular/forms";
 })
 export class AppendErrorMessageComponent {
 
-  @ContentChild(FormControlName)
+  @ContentChild(FormControlName, {static: false})
   formControlName: FormControlName;
 
   constructor() {

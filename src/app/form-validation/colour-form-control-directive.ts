@@ -1,10 +1,10 @@
-import {ContentChild, Directive, HostBinding} from "@angular/core";
-import {FormControlName} from "@angular/forms";
+import {ContentChild, Directive, HostBinding} from '@angular/core';
+import {FormControlName} from '@angular/forms';
 
 @Directive({selector: '[formControlName]'})
 export class ColourFormControlDirective {
 
-  @ContentChild(FormControlName)
+  @ContentChild(FormControlName, {static: false})
   formControlName: FormControlName;
 
   constructor() {
