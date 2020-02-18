@@ -6,7 +6,7 @@
       <label for="firstName">First name</label>
       <input type="text" class="form-control" id="firstName" formControlName="firstName">
     </div>
-    <div class="col-md-4 mb-3" app-append-error-message appColor>
+    <div class="col-md-4 mb-3" app-append-error-message>
       <label for="lastName">Last name</label>
       <input type="text" class="form-control" id="lastName" formControlName="lastName">
     </div>
@@ -26,8 +26,16 @@
       </div>
     </div>
   </div>
+  <div class="form-row">
+    <div class="col-md-8 mb-3" app-append-error-message>
+      <label for="backgroundImage">Choose your background image</label>
+      <app-image-selector id="backgroundImage" formControlName="backgroundImage"></app-image-selector>
+    </div>
+  </div>
   <button class="btn btn-primary" type="submit">Submit form</button>
   <button class="btn btn-secondary" type="button" (click)="resetForm()">Reset form</button>
+  <button class="btn btn-secondary" type="button"
+          (click)="toggleDisableForm()">{{form.disabled ? 'Enable' : 'Disable'}}</button>
 </form>
 
 <div *ngIf="formData" class="alert alert-success form-output" role="alert">

@@ -17,7 +17,8 @@ export class ExampleFormComponent {
     this.form = fb.group({
       firstName: fb.control('', Validators.required),
       lastName: fb.control('', Validators.required),
-      phoneNumbers: fb.array([this.createPhoneNumberFormControl()])
+      phoneNumbers: fb.array([this.createPhoneNumberFormControl()]),
+      backgroundImage: fb.control('', Validators.required)
     });
   }
 
@@ -49,4 +50,11 @@ export class ExampleFormComponent {
     return this.fb.control('', [e164PhoneNumberValidator()]);
   }
 
+  toggleDisableForm() {
+    if (this.form.disabled) {
+      this.form.enable();
+    } else {
+      this.form.disable();
+    }
+  }
 }

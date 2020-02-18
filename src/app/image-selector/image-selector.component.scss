@@ -1,0 +1,14 @@
+:host{
+  &.ng-invalid ngb-carousel {
+    border: red 3px solid;
+  }
+
+  &.ng-valid ngb-carousel {
+    border: #28a745 3px solid;
+  }
+}
+
+ngb-carousel.disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
