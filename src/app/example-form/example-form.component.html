@@ -27,9 +27,13 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="col-md-8 mb-3" app-append-error-message>
+    <div class="col-md-4 mb-3" app-append-error-message>
       <label for="backgroundImage">Choose your background image</label>
       <app-image-selector id="backgroundImage" formControlName="backgroundImage"></app-image-selector>
+    </div>
+    <div class="col-md-4 mb-3" app-append-error-message>
+      <label for="username">Username</label>
+      <input class="form-control" type="text" id="username" formControlName="username">
     </div>
   </div>
   <button class="btn btn-primary" type="submit">Submit form</button>

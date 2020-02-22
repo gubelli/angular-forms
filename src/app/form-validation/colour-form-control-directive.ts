@@ -8,12 +8,12 @@ export class ColourFormControlDirective {
 
   @HostBinding('class.is-invalid')
   get isInvalid() {
-    return this.control.invalid && this.control.touched;
+    return this.control.invalid && this.control.dirty;
   }
 
   @HostBinding('class.is-valid')
   get isValid() {
-    return this.control.valid && this.control.touched;
+    return this.control.valid && this.control.dirty;
   }
 
   get control() {

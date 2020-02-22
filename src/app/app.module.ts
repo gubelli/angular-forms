@@ -13,7 +13,8 @@ import {ColourFormControlDirective} from './form-validation/colour-form-control-
 import {AppendErrorMessageComponent} from './form-validation/append-error-message.component';
 import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 import {ImageSelectorComponent} from './image-selector/image-selector.component';
-
+import {HttpClientModule} from '@angular/common/http';
+import {UserNameAsyncValidatorDirective} from './validators/user-name-async-validator.directive';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,14 @@ import {ImageSelectorComponent} from './image-selector/image-selector.component'
     PageNotFoundComponent,
     AppendErrorMessageComponent,
     ImageSelectorComponent,
+    UserNameAsyncValidatorDirective,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    HttpClientModule
   ],
   providers: [
     FormHelperService

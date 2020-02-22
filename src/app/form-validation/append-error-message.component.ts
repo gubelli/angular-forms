@@ -25,6 +25,8 @@ export class AppendErrorMessageComponent {
         return 'Your entry is too long. Max ' + this.formControlName.errors[key].requiredLength + ' chars)';
       case 'required':
         return 'This is a required field';
+      case 'userNameTaken':
+        return 'This user name is already taken';
       default:
         return '';
     }

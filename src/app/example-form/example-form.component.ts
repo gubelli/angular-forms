@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {e164PhoneNumberValidator} from '../validators/e164-phone-number.validator';
 import {FormHelperService} from '../form-validation/form-helper.service';
+import {HttpClient} from '@angular/common/http';
+import {userNameAsyncValidator} from '../validators/user-name-async-validator.directive';
 
 @Component({
   selector: 'app-example-form',
@@ -13,12 +15,15 @@ export class ExampleFormComponent {
   form: FormGroup;
   formData: any;
 
-  constructor(private fb: FormBuilder, public fh: FormHelperService) {
+  constructor(private fb: FormBuilder,
+              http: HttpClient,
+              public fh: FormHelperService) {
     this.form = fb.group({
       firstName: fb.control('', Validators.required),
       lastName: fb.control('', Validators.required),
       phoneNumbers: fb.array([this.createPhoneNumberFormControl()]),
-      backgroundImage: fb.control('', Validators.required)
+      backgroundImage: fb.control('', Validators.required),
+      username: fb.control('', Validators.required, userNameAsyncValidator(http))
     });
   }
 
