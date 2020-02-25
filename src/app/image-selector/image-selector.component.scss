@@ -6,6 +6,10 @@
   &.ng-valid ngb-carousel {
     border: #28a745 3px solid;
   }
+
+  ngb-carousel {
+    border: transparent 3px solid;
+  }
 }
 
 ngb-carousel.disabled {
