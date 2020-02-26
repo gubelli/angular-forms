@@ -3,6 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ExampleFormComponent} from './example-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormHelperService} from '../form-validation/form-helper.service';
+import {ImageSelectorComponent} from '../image-selector/image-selector.component';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('ExampleFormComponent', () => {
   let component: ExampleFormComponent;
@@ -10,9 +12,14 @@ describe('ExampleFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ExampleFormComponent],
-      imports: [ReactiveFormsModule],
-      providers: [FormHelperService]
+      declarations: [ExampleFormComponent, ImageSelectorComponent],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientModule
+      ],
+      providers: [
+        FormHelperService
+      ]
     })
       .compileComponents();
   }));
@@ -53,13 +60,21 @@ describe('ExampleFormComponent', () => {
   });
 
   it('should save when each input is valid', () => {
-    const expectedFormData = {firstName: 'Max', lastName: 'Mustermann', phoneNumbers: ['+41 79 123 45 67']};
+    const expectedFormData = {
+      firstName: 'Max',
+      lastName: 'Mustermann',
+      phoneNumbers: ['+41 79 123 45 67'],
+      backgroundImage: 'image-01',
+      username: 'testAccount'
+    };
+
     expect(component.formData).toBeUndefined();
 
+    component.form.get('username').clearAsyncValidators();
     component.form.patchValue(expectedFormData);
     component.onSubmit();
+    fixture.detectChanges();
 
-    expect(component.form.valid).toBe(true);
     expect(component.form.valid).toBe(true);
     expect(component.formData).toEqual(expectedFormData);
   });
