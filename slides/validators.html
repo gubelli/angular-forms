@@ -75,6 +75,21 @@ function distinctValueValidator(formArray: FormArray)
 }</code></pre>
             <pre><code class="hljs typescript" data-trim data-noescape>this.fb.array([...], distinctValueValidator)</code></pre>
         </section>
+        <section>
+            <h3>Async custom validators</h3>
+            <pre><code class="hljs typescript" data-trim data-noescape>
+export const userNameAsyncValidator = (http: HttpClient): AsyncValidatorFn =&gt; {
+  return (control: AbstractControl): Observable&lt;ValidationErrors | null&gt; =&gt; {
+    const userName = control.value;
+    return http.get&lt;UserName[]&gt;('assets/users.json').pipe(
+      delay(2000),
+      map(users =&gt; users.filter(user =&gt; user.shortName === userName)),
+      map(users =&gt; users.length &gt; 0 ? {userNameTaken: true} : null)
+    );
+  };
+};</code></pre>
+            <pre><code class="hljs typescript" data-trim data-noescape>fb.control('', Validators.required, userNameAsyncValidator(http))</code></pre>
+        </section>
     </div>
 </div>
 

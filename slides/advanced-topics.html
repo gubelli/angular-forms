@@ -66,10 +66,15 @@ this.form.valueChanges.subscribe(
             </section>
             <section>
                 <h3>Why does it have to be dynamic?</h3>
-                <p><b>FormArray</b> and <b>FormGroup</b> allow to dynamically add and remove fields after the form had been created. This is important due to the following reasons:</p>
+                <p><b>FormArray</b> and <b>FormGroup</b> allow to dynamically add and remove fields after the form had
+                    been created. This is important due to the following reasons:</p>
                 <ul>
-                    <li>You do not want to modify/overwrite the state of other <b>FormControl</b>s while doing this operation</li>
-                    <li>Hiding an input field will not protect it from being validated, e.g. if there is a required hidden field, the user cannot submit the form</li>
+                    <li>You do not want to modify/overwrite the state of other <b>FormControl</b>s while doing this
+                        operation
+                    </li>
+                    <li>Hiding an input field will not protect it from being validated, e.g. if there is a required
+                        hidden field, the user cannot submit the form
+                    </li>
                 </ul>
             </section>
             <section>
@@ -138,6 +143,128 @@ setControl(index: number, control: AbstractControl): void;
    'customerSubject',
    this.fb.control('', Validators.required));</code></pre>
                 <pre><code class="hljs typescript" data-trim data-noescape>this.subjectFormGroup.removeControl('customerSubject');</code></pre>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Custom controls</h2>
+            </section>
+            <section>
+                <h3>Purpose</h3>
+                <p>Examples:</p>
+                <ul>
+                    <li>Bind component from a library to the form</li>
+                    <li>Build own reusable form controls e.g. star-rating</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Why do we want to bind a component from library to the form?</h3>
+                <p>We can control the component with the form state, we can add <b>form validators</b> and use
+                the common <b>ng-valid, ng-invalid</b> css classes for styling. Over the form state we can easy <b>enable</b>
+                and <b>disable</b> the component. Last but not least we have the output value inside our <b>form data object</b>, which
+                simplify the data handling.</p>
+            </section>
+            <section>
+                <h3>How to make a component to a custom control</h3>
+                <p>Implement the following interface </p>
+                <pre><code class="hljs typescript" data-trim>interface ControlValueAccessor {
+  writeValue(obj: any): void
+  registerOnChange(fn: any): void
+  registerOnTouched(fn: any): void
+  setDisabledState(isDisabled: boolean)?: void
+}</code></pre>
+            </section>
+            <section>
+                <h3>Embedding ng-bootstrap image carousel in custom form control </h3>
+                <iframe src="https://ng-bootstrap.github.io/#/components/carousel/examples" height="800" width="1000"></iframe>
+            </section>
+            <section>
+                <h3>Register provider</h3>
+                <pre><code class="hljs typescript" data-trim>@Component({
+  selector: 'app-image-selector',
+  templateUrl: './image-selector.component.html',
+  styleUrls: ['./image-selector.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ImageSelectorComponent),
+      multi: true
+    }
+  ]
+})
+export class ImageSelectorComponent implements ControlValueAccessor {
+                </code></pre>
+            </section>
+            <section>
+                <h3>Implement ControlValueAccessor interface</h3>
+                <pre><code class="hljs typescript" data-trim>private _value: string;
+  private isDisabled: boolean;
+
+  set value(value: string) {
+    this._value = value;
+    this.onChange(value);
+  }
+
+  get value(): string {
+    return this._value;
+  }
+
+  private onChange = (_: string) => {
+  };
+
+  setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
+
+  registerOnChange(fn: (_: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  writeValue(value: string): void {
+    this.value = value;
+  }</code></pre>
+            </section>
+            <section>
+                <h3>Add glue code to ng-bootstrap carousel</h3>
+                <pre><code data-trim class="hljs html"><ngb-carousel *ngIf="images" (slide)="slideChanged($event)" [activeId]="value" [interval]="0"
+                                  [ngClass]="{disabled: isDisabled}">
+  <ng-template ngbSlide id="magic-image-1">
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="Random first slide">
+    </div>
+    <div class="carousel-caption">
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </div>
+  </ng-template>
+</ngb-carousel></code></pre>
+                <pre><code class="hljs typescript" data-trim>slideChanged(slideEvent: NgbSlideEvent) {
+    this.value = slideEvent.current;
+}</code></pre>
+            </section>
+            <section>
+                <h3>Add custom form styling</h3>
+                <pre><code data-trim class="hljs css">:host.ng-dirty{
+  &.ng-invalid ngb-carousel {
+    border: red 3px solid;
+  }
+
+  &.ng-valid ngb-carousel {
+    border: #28a745 3px solid;
+  }
+
+  ngb-carousel {
+    border: transparent 3px solid;
+  }
+}
+
+ngb-carousel.disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}</code></pre>
             </section>
         </section>
     </div>
