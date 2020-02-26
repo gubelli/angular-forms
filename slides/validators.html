@@ -54,7 +54,7 @@
             <h3>Custom validations</h3>
             <pre><code class="hljs typescript" data-trim data-noescape>
 function customerNumberValidator(control: FormControl)
-   : { [s: string]: boolean } {
+   : ValidationErrors | null {
    if (!control.value.match(/^P1000/)) {
       return {invalidCustomerNumber: true};
    }
@@ -65,7 +65,7 @@ function customerNumberValidator(control: FormControl)
             <h3>Custom validations over multiple fields</h3>
             <pre><code class="hljs typescript" data-trim data-noescape>
 function distinctValueValidator(formArray: FormArray)
-   : { [s: string]: boolean } {
+   : ValidationErrors | null {
    const values = formArray.controls
       .map(control => control.value);
    const uniqueValues = new Set(values);

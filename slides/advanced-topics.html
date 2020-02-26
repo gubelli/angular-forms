@@ -151,7 +151,6 @@ setControl(index: number, control: AbstractControl): void;
             </section>
             <section>
                 <h3>Purpose</h3>
-                <p>Examples:</p>
                 <ul>
                     <li>Bind component from a library to the form</li>
                     <li>Build own reusable form controls e.g. star-rating</li>
@@ -166,7 +165,7 @@ setControl(index: number, control: AbstractControl): void;
             </section>
             <section>
                 <h3>How to make a component to a custom control</h3>
-                <p>Implement the following interface </p>
+                <p>Implement the interface that acts as a bridge between the Angular forms API and a native element in the DOM.</p>
                 <pre><code class="hljs typescript" data-trim>interface ControlValueAccessor {
   writeValue(obj: any): void
   registerOnChange(fn: any): void
@@ -197,7 +196,8 @@ export class ImageSelectorComponent implements ControlValueAccessor {
             </section>
             <section>
                 <h3>Implement ControlValueAccessor interface</h3>
-                <pre><code class="hljs typescript" data-trim>private _value: string;
+                <pre><code class="hljs typescript" data-trim>
+  private _value: string;
   private isDisabled: boolean;
 
   set value(value: string) {
