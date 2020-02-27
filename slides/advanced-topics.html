@@ -51,6 +51,22 @@ this.form.valueChanges.subscribe(
          }*/
    });</code></pre>
             </section>
+            <section>
+                <h3>Prevent infinity update loops</h3>
+                <p>Each time we update a value programmatically the <b>valueChanges</b> Event get triggered. We can prevent this
+                with set the flag <b>emitEvent</b> to false. It works for patchValue, setValue, reset...</p>
+                <pre><code class="hljs typescript" data-trim data-noescape>this.form.valueChanges.subscribe(
+   (formValues: any) => {
+     // Do some cross field calculation
+     this.form.patchValue(calculatedValue, {emitEvent: false});
+   });</code></pre>
+            </section>
+            <section>
+                <h3>Prevent unnecessary update loops</h3>
+                <p>If we enable or disable a form control, the valueChanges Event get triggered. To prevent unnecessary
+                    updates we can also set the flag <b>emitEvent</b> to false</p>
+                <pre><code class="hljs typescript">this.group.get('hasChildren').disable({ emitEvent: false })</code></pre>
+            </section>
         </section>
         <section>
             <section>
