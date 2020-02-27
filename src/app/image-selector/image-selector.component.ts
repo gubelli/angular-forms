@@ -23,14 +23,15 @@ export class ImageSelectorComponent implements ControlValueAccessor {
   set value(value: string) {
     this._value = value;
     this.onChange(value);
+    this.onTouched(value);
   }
 
   get value(): string {
     return this._value;
   }
 
-  private onChange = (_: string) => {
-  };
+  private onChange = (_: string) => { };
+  private onTouched = (_: string) => { };
 
   constructor() {
   }
@@ -44,6 +45,7 @@ export class ImageSelectorComponent implements ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   writeValue(value: string): void {
