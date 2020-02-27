@@ -25,7 +25,7 @@
 <div class="reveal">
     <div class="slides">
         <section class="deck-slide">
-            <h1>The Basics - Form Groups,<br> Form Controls & From Arrays</h1>
+            <h1>The Basics - Form Groups,<br> Form Controls & Form Arrays</h1>
         </section>
 
         <section>
@@ -81,7 +81,7 @@
         </section>
         <section>
             <h3>AbstractControl</h3>
-            <div>In Angular, each input field or group of fields, including the form itself is represented by a subtype of <b>AbstractControl</b>. An <b>AbstractControl</b> provides:</div>
+            <div>In Angular, each input field or a group of fields, including the form itself is represented by a subtype of <b>AbstractControl</b>. An <b>AbstractControl</b> provides:</div>
             <ul>
                 <li>State
                     <ul>
@@ -111,7 +111,7 @@
         <section>
             <h3>FormGroup</h3>
             <ul>
-                <li><b>FormGroup</b>s manage multiple <b>FormControl</b>s</li>
+                <li><b>FormGroup</b> manage multiple <b>FormControls</b></li>
                 <li>Used for clustering values together, which belong together, e.g. an address</li>
                 <li>The form itself is always represented by a <b>FormGroup</b></li>
             </ul>
@@ -120,10 +120,10 @@
         <section>
             <h3>FormArray</h3>
             <ul>
-                <li><b>FormArray</b>s manage multiple <b>FormControl</b>s</li>
-                <li>Used for a series of input fields of same kind, e.g.
+                <li><b>FormArray</b> manage multiple <b>FormControls</b></li>
+                <li>Used for a series of input fields of the same kind, e.g.
                     <ul>
-                        <li>phone number input fields</li>
+                        <li>phone numbers</li>
                         <li>ordering of calling sequence</li>
                     </ul>
                 </li>
