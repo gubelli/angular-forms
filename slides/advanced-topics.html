@@ -209,8 +209,8 @@ export class ImageSelectorComponent implements ControlValueAccessor {
     return this._value;
   }
 
-  private onChange = (_: string) => {
-  };
+  private onChange = (_: string) => { };
+  private onTouched = (_: string) => { };
 
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
@@ -221,12 +221,12 @@ export class ImageSelectorComponent implements ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   writeValue(value: string): void {
     this.value = value;
-  }</code></pre>
-            </section>
+  }</code></pre></section>
             <section>
                 <h3>Add glue code to ng-bootstrap carousel</h3>
                 <pre><code data-trim class="hljs html"><ngb-carousel *ngIf="images" (slide)="slideChanged($event)" [activeId]="value" [interval]="0"
@@ -247,7 +247,7 @@ export class ImageSelectorComponent implements ControlValueAccessor {
             </section>
             <section>
                 <h3>Add custom form styling</h3>
-                <pre><code data-trim class="hljs css">:host.ng-dirty{
+                <pre><code data-trim class="hljs css">:host.ng-touched{
   &.ng-invalid ngb-carousel {
     border: red 3px solid;
   }
